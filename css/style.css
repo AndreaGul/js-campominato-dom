@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color-white: #ffffff;
+  --bg-color-green: #7fffd4;
+}
+
+body {
+  background-color: red;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ****header**** */
+header {
+  background-color: var(--bg-color-white);
+  padding: 30px 24px;
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  font-weight: 800;
+  margin-left: 24px;
+}
+
+header button {
+  margin: 0 0 0 auto;
+  background-color: #e9e9ed;
+  border: #8f8f9d solid 1px;
+  border-radius: 6px;
+  padding: 2px 40px;
+}
+header button h5 {
+  font-size: 18px;
+}
+
+/* **** /header**** */
+
+/* ****mmain**** */
+main {
+  background-color: var(--bg-color-green);
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 88px;
+}
+
+main h2 {
+  text-transform: uppercase;
+}
+
+main .grid {
+  height: 765px;
+  width: 765px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+main .cella {
+  border: black solid 1px;
+  height: calc(100% / 10);
+  width: calc(100% / 10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colore-cella {
+  background-color: rgb(0, 204, 255);
+}
+
+/* **** /main**** */
+
+/* ****footer**** */
+footer {
+  background-color: var(--bg-color-white);
+  padding: 22px 25px;
+}
+/* **** /footer**** */
