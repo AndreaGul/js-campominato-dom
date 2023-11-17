@@ -5,6 +5,7 @@
 // Ogni cella ha un numero progressivo, da 1 a 100.
 // Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 // Quando l'utente clicca su ogni cella, la cella cliccata si colore di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
+// e aggiungiamo la logica del gioco
 
 function createElement(tag, classname, content) {
   const element = document.createElement(tag);
@@ -39,15 +40,22 @@ playButton.addEventListener('click', function () {
 
   // 2 Con l'inserimento delle caselle nel main tramite un ciclo for la variabile che usciamo per il ciclo può essere utilizata come indice della casella.
 
+  //alleggeriamo il codice usando fragment prima di append
+
+  const fragment = document.createDocumentFragment();
+
   for (let i = 0; i < 100; i++) {
     const myElement = createElement('div', 'cella', i);
+
+    //cambio colore della cella al click
     myElement.addEventListener('click', function () {
       console.log(i);
       myElement.classList.add('colore-cella');
     });
 
-    grid.append(myElement);
+    fragment.append(myElement);
   }
+  grid.append(fragment);
   main.append(grid);
 });
 
