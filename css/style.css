@@ -73,8 +73,12 @@ main .cella {
   align-items: center;
 }
 
-.colore-cella {
+.colore-cella-blu {
   background-color: rgb(0, 204, 255);
+}
+
+.colore-cella-rosso {
+  background-color: rgb(241, 47, 47);
 }
 
 /* **** /main**** */

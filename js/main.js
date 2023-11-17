@@ -28,14 +28,14 @@ function numRandom() {
   const numbers = [];
 
   do {
-    let number = Math.floor(Math.random() * 100 + 1);
+    let number = Math.floor(Math.random() * 5 + 1);
 
     // Quindi nella generazione ed inserimento di questi 16 numeri andremo a controllare nell'array prima se sono contenuti (includes()) nell''array dei numeri random e se non sono presenti li andiamo ad aggiungere con push.
 
     if (numbers.includes(number) === false) {
       numbers.push(number);
     }
-  } while (numbers.length !== 16);
+  } while (numbers.length !== 3);
 
   return numbers;
 }
@@ -68,14 +68,18 @@ playButton.addEventListener('click', function () {
   //alleggeriamo il codice usando fragment prima di append
 
   const fragment = document.createDocumentFragment();
+  const errorNumber = numRandom();
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 1; i <= 5; i++) {
     const myElement = createElement('div', 'cella', i);
 
     //cambio colore della cella al click
     myElement.addEventListener('click', function () {
+      // confrontiamo il cotenuto della cella grazie grazie all-indice del ciclo e se l'indice è incluso nell'array dei numeri random
+      if (errorNumber.includes(i) === true) {
+      }
       console.log(i);
-      myElement.classList.add('colore-cella');
+      myElement.classList.add('colore-cella-blu');
     });
 
     fragment.append(myElement);

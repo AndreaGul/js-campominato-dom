@@ -11,13 +11,13 @@ in un funzione generiamo 16 numeri che andiamo a mettere in un array, questi num
 le bombe. :bomba:
 :esclamazione:Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
 
-Quindi nella generazione ed inserimento di questi 16 numeri andremo a controllare nell'array prima se sono contenuti (includes()) nell''array dei numeri random e se non sono presenti li andiamo add aggiungere con push.
+Quindi nella generazione ed inserimento di questi 16 numeri andremo a controllare nell'array prima se sono contenuti (includes()) nell''array dei numeri random e se non sono presenti li andiamo ad aggiungere con push.
 
 In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati
 
 - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
 
-quindi possiamo confrontare il cotenuto della cella grazie a innertext e se il contenuto è incluso nell'array dei numeri random,
+quindi possiamo confrontare il cotenuto della cella grazie grazie all-indice del ciclo e se l'indice è incluso nell'array dei numeri random,
 
 la casella cambierà colore e diventerà rossa quindi aggiungere un classe alla cella e la partita termina
 
