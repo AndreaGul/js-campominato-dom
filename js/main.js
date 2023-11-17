@@ -96,7 +96,7 @@ function createGrid() {
         elementPunteggio.innerHTML = `POINTS ${punteggio.length}`;
 
         //se arriva al numero di caselle massime blu vince
-        if (punteggio === 100 - 16) {
+        if (punteggio.length === 100 - 16) {
           const vittoria = createElement(
             'div',
             'vit-e-sconfit',
