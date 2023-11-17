@@ -77,6 +77,7 @@ playButton.addEventListener('click', function () {
     myElement.addEventListener('click', function () {
       // confrontiamo il cotenuto della cella grazie grazie all-indice del ciclo e se l'indice è incluso nell'array dei numeri random
       if (errorNumber.includes(i) === true) {
+        myElement.classList.add('colore-cella-rosso');
       }
       console.log(i);
       myElement.classList.add('colore-cella-blu');
