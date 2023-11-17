@@ -28,27 +28,26 @@ function numRandom() {
   const numbers = [];
 
   do {
-    let number = Math.floor(Math.random() * 5 + 1);
+    let number = Math.floor(Math.random() * 100 + 1);
 
     // Quindi nella generazione ed inserimento di questi 16 numeri andremo a controllare nell'array prima se sono contenuti (includes()) nell''array dei numeri random e se non sono presenti li andiamo ad aggiungere con push.
 
     if (numbers.includes(number) === false) {
       numbers.push(number);
     }
-  } while (numbers.length !== 3);
+  } while (numbers.length !== 16);
 
   return numbers;
 }
 
-// function changeColor(linkClassname, classname) {
-//   const element = document.querySelector(linkClassname);
-//   element.classList.add(classname);
-//   console.log('colore cambiato');
-// }
+function changeColor(linkClassname, classname) {
+  linkClassname.classList.add(classname);
+}
 
 const playButton = document.getElementById('play-button');
 const main = document.querySelector('main');
 const titolo = document.querySelector('main h2');
+const elementPunteggio = document.getElementById('punteggio');
 
 // 1 sul bottone play dove l'utente clicchera ci agganciamo un event listener che nel momento in cui  viene attivato va ad inserire nel main tutte le caselle.
 // Dobbiamo tener conto che ogni volta che creaiamo le caselle quelle nuove saranno sovrascitte a quelle vecchie.
@@ -68,24 +67,50 @@ playButton.addEventListener('click', function () {
   const fragment = document.createDocumentFragment();
   // const fragmentError = document.createDocumentFragment();
   const errorNumber = numRandom();
-  console.log(errorNumber);
+  console.log('array con le bombe', errorNumber);
   // const sconfitta = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
   // const vittoria = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
 
-  for (let i = 1; i <= 5; i++) {
+  let punteggio = 0;
+
+  for (let i = 1; i <= 100; i++) {
     const myElement = createElement('div', 'cella', i);
 
     //cambio colore della cella al click
     myElement.addEventListener('click', function () {
       // confrontiamo il cotenuto della cella grazie grazie all-indice del ciclo e se l'indice è incluso nell'array dei numeri random
       if (errorNumber.includes(i) === true) {
-        myElement.classList.add('colore-cella-rosso');
-        const sconfitta = createElement('div', 'sconfitta', 'Hai perso');
+        changeColor(myElement, 'colore-cella-rosso');
+
+        const sconfitta = createElement(
+          'div',
+          'vit-e-sconfit',
+          `You lost 
+             with ${punteggio} points`
+        );
 
         grid.append(sconfitta);
+      } else {
+        changeColor(myElement, 'colore-cella-blu');
+
+        //incrementiamo il punteggio goni volta che clicca la cella blu
+        punteggio++;
+
+        //mostriamo il punteggio nell'html
+        elementPunteggio.innerHTML = `POINTS ${punteggio}`;
+
+        //se arriva al numero di caselle massime blu vince
+        if (punteggio === 100 - 16) {
+          const vittoria = createElement(
+            'div',
+            'vit-e-sconfit',
+            `You won 
+             with ${punteggio} points`
+          );
+
+          grid.append(vittoria);
+        }
       }
-      console.log(i);
-      myElement.classList.add('colore-cella-blu');
     });
 
     fragment.append(myElement);
