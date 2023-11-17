@@ -23,42 +23,38 @@ function createElement(tag, classname, content) {
 
 // in un funzione generiamo 16 numeri che andiamo a mettere in un array, questi numeri saranno compresi tra il numero di caselle generate e non potranno ripetersi
 
-function numRandom() {
+function numRandomBombs(num, numlimit) {
   //geriamo 16 numeri
   const numbers = [];
 
   do {
-    let number = Math.floor(Math.random() * 100 + 1);
+    let number = Math.floor(Math.random() * num + 1);
 
     // Quindi nella generazione ed inserimento di questi 16 numeri andremo a controllare nell'array prima se sono contenuti (includes()) nell''array dei numeri random e se non sono presenti li andiamo ad aggiungere con push.
 
     if (numbers.includes(number) === false) {
       numbers.push(number);
     }
-  } while (numbers.length !== 16);
+  } while (numbers.length !== numlimit);
 
   return numbers;
 }
 
+//funzxione per cambiare il colore alla cella
 function changeColor(linkClassname, classname) {
   linkClassname.classList.add(classname);
 }
 
-const playButton = document.getElementById('play-button');
-const main = document.querySelector('main');
-const titolo = document.querySelector('main h2');
-const elementPunteggio = document.getElementById('punteggio');
+//resetto la griglia
+function resetGrid() {
+  titolo.classList.add('d-none');
+  grid.innerHTML = '';
+}
 
-// 1 sul bottone play dove l'utente clicchera ci agganciamo un event listener che nel momento in cui  viene attivato va ad inserire nel main tutte le caselle.
-// Dobbiamo tener conto che ogni volta che creaiamo le caselle quelle nuove saranno sovrascitte a quelle vecchie.
-
-playButton.addEventListener('click', function () {
-  titolo.remove();
-  main.innerHTML = '';
-
-  const grid = document.createElement('div');
-
-  grid.classList.add('grid');
+function createGrid() {
+  resetGrid();
+  grid.classList.remove('d-none');
+  grid.classList.add('row');
 
   // 2 Con l'inserimento delle caselle nel main tramite un ciclo for la variabile che usciamo per il ciclo può essere utilizata come indice della casella.
 
@@ -66,7 +62,8 @@ playButton.addEventListener('click', function () {
 
   const fragment = document.createDocumentFragment();
   // const fragmentError = document.createDocumentFragment();
-  const errorNumber = numRandom();
+  const errorNumber = numRandomBombs(100, 16);
+
   console.log('array con le bombe', errorNumber);
   // const sconfitta = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
   // const vittoria = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
@@ -86,7 +83,7 @@ playButton.addEventListener('click', function () {
           'div',
           'vit-e-sconfit',
           `You lost 
-             with ${punteggio} points`
+                          with ${punteggio} points`
         );
 
         grid.append(sconfitta);
@@ -105,7 +102,7 @@ playButton.addEventListener('click', function () {
             'div',
             'vit-e-sconfit',
             `You won 
-             with ${punteggio} points`
+                          with ${punteggio} points`
           );
 
           grid.append(vittoria);
@@ -118,6 +115,17 @@ playButton.addEventListener('click', function () {
 
   grid.append(fragment);
   main.append(grid);
-});
+}
+
+const grid = document.querySelector('.grid');
+const playButton = document.getElementById('play-button');
+const main = document.querySelector('main');
+const titolo = document.querySelector('main h2');
+const elementPunteggio = document.getElementById('punteggio');
+
+// Sul bottone play dove l'utente clicchera ci agganciamo un event listener che nel momento in cui  viene attivato va ad inserire nel main tutte le caselle.
+// Dobbiamo tener conto che ogni volta che creaiamo le caselle quelle nuove saranno sovrascitte a quelle vecchie.
+
+playButton.addEventListener('click', createGrid);
 
 // 4sempre nel ciclo for che utiliziamo per la creazione delle celle ad ogni cella creata ci agganciamo un event listener che al click sulla casella aggiungera una classe che gli cambierà colore un console.log che gli farà stampare l'indice in console.

@@ -1,14 +1,18 @@
+/* reset */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* variabili colori */
 :root {
   --bg-color-white: #ffffff;
   --bg-color-green: #7fffd4;
 }
 
+/* caratteristiche body */
 body {
   background-color: red;
   height: 100vh;
@@ -53,7 +57,7 @@ header button h5 {
 
 /* **** /header**** */
 
-/* ****mmain**** */
+/* ****main**** */
 main {
   background-color: var(--bg-color-green);
   display: flex;
@@ -70,10 +74,17 @@ main h2 {
 main .grid {
   height: 700px;
   width: 700px;
-  display: flex;
+
   flex-wrap: wrap;
   align-content: flex-start;
   position: relative;
+}
+
+.d-none {
+  display: none;
+}
+.row {
+  display: flex;
 }
 
 .vit-e-sconfit {
