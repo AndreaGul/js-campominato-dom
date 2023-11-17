@@ -39,7 +39,7 @@ function numRandom() {
 
   return numbers;
 }
-console.log(numRandom());
+
 // function changeColor(linkClassname, classname) {
 //   const element = document.querySelector(linkClassname);
 //   element.classList.add(classname);
@@ -49,8 +49,6 @@ console.log(numRandom());
 const playButton = document.getElementById('play-button');
 const main = document.querySelector('main');
 const titolo = document.querySelector('main h2');
-
-console.log(playButton);
 
 // 1 sul bottone play dove l'utente clicchera ci agganciamo un event listener che nel momento in cui  viene attivato va ad inserire nel main tutte le caselle.
 // Dobbiamo tener conto che ogni volta che creaiamo le caselle quelle nuove saranno sovrascitte a quelle vecchie.
@@ -68,7 +66,11 @@ playButton.addEventListener('click', function () {
   //alleggeriamo il codice usando fragment prima di append
 
   const fragment = document.createDocumentFragment();
+  // const fragmentError = document.createDocumentFragment();
   const errorNumber = numRandom();
+  console.log(errorNumber);
+  // const sconfitta = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
+  // const vittoria = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
 
   for (let i = 1; i <= 5; i++) {
     const myElement = createElement('div', 'cella', i);
@@ -78,6 +80,9 @@ playButton.addEventListener('click', function () {
       // confrontiamo il cotenuto della cella grazie grazie all-indice del ciclo e se l'indice è incluso nell'array dei numeri random
       if (errorNumber.includes(i) === true) {
         myElement.classList.add('colore-cella-rosso');
+        const sconfitta = createElement('div', 'sconfitta', 'Hai perso');
+
+        grid.append(sconfitta);
       }
       console.log(i);
       myElement.classList.add('colore-cella-blu');
@@ -85,6 +90,7 @@ playButton.addEventListener('click', function () {
 
     fragment.append(myElement);
   }
+
   grid.append(fragment);
   main.append(grid);
 });
