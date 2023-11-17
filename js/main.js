@@ -66,7 +66,7 @@ function createGrid() {
   //array con quale numero ha le bombe
   const errorNumber = numRandomBombs(100, 16);
   console.log('array con le bombe', errorNumber);
-  let punteggio = 0;
+  let punteggio = [];
 
   for (let i = 1; i <= 100; i++) {
     const myElement = createElement('div', 'cella', i);
@@ -81,18 +81,19 @@ function createGrid() {
           'div',
           'vit-e-sconfit',
           `You lost 
-                          with ${punteggio} points`
+                          with ${punteggio.length} points`
         );
 
         grid.append(sconfitta);
       } else {
         changeColor(myElement, 'colore-cella-blu');
 
-        //incrementiamo il punteggio goni volta che clicca la cella blu
-        punteggio++;
-
+        //inserisco quale caseela blu e' stata premuta
+        if (!punteggio.includes(i)) {
+          punteggio.push(i);
+        }
         //mostriamo il punteggio nell'html
-        elementPunteggio.innerHTML = `POINTS ${punteggio}`;
+        elementPunteggio.innerHTML = `POINTS ${punteggio.length}`;
 
         //se arriva al numero di caselle massime blu vince
         if (punteggio === 100 - 16) {
@@ -100,7 +101,7 @@ function createGrid() {
             'div',
             'vit-e-sconfit',
             `You won 
-                          with ${punteggio} points`
+            with ${punteggio.length} points`
           );
 
           grid.append(vittoria);
