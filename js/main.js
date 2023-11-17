@@ -62,12 +62,10 @@ function createGrid() {
 
   const fragment = document.createDocumentFragment();
   // const fragmentError = document.createDocumentFragment();
+
+  //array con quale numero ha le bombe
   const errorNumber = numRandomBombs(100, 16);
-
   console.log('array con le bombe', errorNumber);
-  // const sconfitta = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
-  // const vittoria = createElement('div', 'sconfitta', '<h2>Hai perso</h2>');
-
   let punteggio = 0;
 
   for (let i = 1; i <= 100; i++) {
