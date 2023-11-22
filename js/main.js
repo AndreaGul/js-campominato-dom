@@ -51,10 +51,35 @@ function resetGrid() {
   grid.innerHTML = '';
 }
 
+//in base al numero di caselle scelte si acmbia la dimensione della griglia
+function setCellNumber(level) {
+  let cellNumber;
+  switch (level) {
+    case 2:
+      cellNumber = 81;
+      break;
+
+    case 3:
+      cellNumber = 49;
+      break;
+
+    case 1:
+    default:
+      cellNumber = 100;
+      break;
+  }
+
+  return cellNumber;
+}
+
 function createGrid() {
   resetGrid();
   grid.classList.remove('d-none');
   grid.classList.add('row');
+
+  //prendo il numero di celle dalla difficolta
+  const level = parseInt(document.getElementById('select-level').value);
+  const cellNumber = setCellNumber(level);
 
   // 2 Con l'inserimento delle caselle nel main tramite un ciclo for la variabile che usciamo per il ciclo può essere utilizata come indice della casella.
 
@@ -64,11 +89,12 @@ function createGrid() {
   // const fragmentError = document.createDocumentFragment();
 
   //array con quale numero ha le bombe
-  const errorNumber = numRandomBombs(100, 16);
+  const errorNumber = numRandomBombs(cellNumber, 16);
   console.log('array con le bombe', errorNumber);
+
   let punteggio = [];
 
-  for (let i = 1; i <= 100; i++) {
+  for (let i = 1; i <= cellNumber; i++) {
     const myElement = createElement('div', 'cella', i);
 
     //cambio colore della cella al click
@@ -76,12 +102,13 @@ function createGrid() {
       // confrontiamo il cotenuto della cella grazie grazie all-indice del ciclo e se l'indice è incluso nell'array dei numeri random
       if (errorNumber.includes(i) === true) {
         changeColor(myElement, 'colore-cella-rosso');
-
+        //per mostrare tutte le celle colorate potrei usare query sector all su colore cella rosso
+        //o un for dove la condizione e' quella del if
         const sconfitta = createElement(
           'div',
           'vit-e-sconfit',
           `You lost 
-                          with ${punteggio.length} points`
+                              with ${punteggio.length} points`
         );
 
         grid.append(sconfitta);
@@ -96,12 +123,12 @@ function createGrid() {
         elementPunteggio.innerHTML = `POINTS ${punteggio.length}`;
 
         //se arriva al numero di caselle massime blu vince
-        if (punteggio.length === 100 - 16) {
+        if (punteggio.length === cellNumber - 16) {
           const vittoria = createElement(
             'div',
             'vit-e-sconfit',
             `You won 
-            with ${punteggio.length} points`
+                with ${punteggio.length} points`
           );
 
           grid.append(vittoria);

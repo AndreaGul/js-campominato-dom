@@ -44,7 +44,7 @@ header h1 {
   width: 300px;
 }
 
-header button {
+header .button-default {
   background-color: #e9e9ed;
   border: #8f8f9d solid 1px;
   border-radius: 6px;
